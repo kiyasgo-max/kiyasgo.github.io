@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KıyasGO - Elektronik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        #ai-assistant-section {
+            background: linear-gradient(135deg, #eff6ff 0%, #ffebeb 100%);
+        }
+        #chat-window::-webkit-scrollbar { width: 6px; }
+        #chat-window::-webkit-scrollbar-thumb { background-color: #d1d5db; border-radius: 20px; }
+        .nav-link.active {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 1. HEADER: ARAMA ÇUBUĞU VE MENÜ -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="index.html" class="text-3xl font-extrabold text-blue-600">
+                    Kıyas<span class="text-red-600">GO</span>
+                </a>
+                <div class="relative w-full max-w-2xl">
+                    <input type="search" id="search-input" placeholder="Aradığınız ürünü yazın (örn: 'iPhone 15 Pro')" class="w-full pl-5 pr-12 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                    <button id="search-button" class="absolute right-0 top-0 h-full px-5 text-gray-500 hover:text-blue-600 rounded-full flex items-center justify-center">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- KATEGORİ MENÜSÜ LİNKLERİ -->
+            <nav id="category-nav" class="w-full flex justify-center gap-4 md:gap-8 mt-4 border-t border-gray-200 pt-3">
+                <a href="index.html" class="nav-link text-gray-600 font-medium py-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 transition-all">Ana Sayfa</a>
+                <a href="elektronik.html" class="nav-link text-gray-600 font-medium py-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 transition-all active">Elektronik</a>
+                <a href="moda.html" class="nav-link text-gray-600 font-medium py-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 transition-all">Moda</a>
+                <a href="ev-yasam.html" class="nav-link text-gray-600 font-medium py-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 transition-all">Ev & Yaşam</a>
+            </nav>
+            <!-- KATEGORİ MENÜSÜ BİTİŞİ -->
+
+        </nav>
+    </header>
+
+    <!-- 2. ANA İÇERİK: ELEKTRONİK SAYFASI -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-[calc(100vh-450px)]">
+        
+        <!-- ELEKTRONİK KATEGORİ SAYFASI -->
+        <section id="page-elektronik" class="page-section p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b pb-3">Elektronik</h2>
+            <p class="text-lg text-gray-600">Popüler elektronik ürünler ve alt kategorileri burada listelenecek. (Örn: Telefonlar, Bilgisayarlar, TV'ler...)</p>
+            <!-- Bu alana o kategoriye ait içerikler eklenebilir -->
+        </section>
+
+        <!-- Arama Sonuçları Bölümü (Arama yapıldığında burası gösterilecek) -->
+        <section id="page-results-section" class="page-section hidden">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-3">
+                <h1 id="results-title" class="text-2xl md:text-3xl font-bold text-gray-800"></h1>
+                <button class="flex-shrink-0 text-sm text-blue-600 font-medium hover:underline flex items-center gap-1">
+                    Benzer Ürünleri Karşılaştır
+                </button>
+            </div>
+            <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Fiyat kartları buraya JS ile eklenecek -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 3. AI ALIŞVERİŞ ASİSTANI -->
+    <section id="ai-assistant-section" class="py-12 md:py-16 mt-12 rounded-t-xl shadow-inner-top">
+        <!-- AI Asistan içeriği (index.html'den kopyalandı) -->
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">
+                        🤖 KıyasGO AI Asistanı
+                    </span>
+                </h2>
+                <p class="mt-3 text-lg text-gray-600">Kişisel e-ticaret danışmanınız. Fiyattan fazlasını sorun.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
+                <div id="chat-window" class="h-80 overflow-y-auto p-6 space-y-4">
+                    <div class="flex justify-start">
+                        <div class="bg-blue-100 text-blue-800 p-4 rounded-xl rounded-bl-none max-w-md">
+                            <p class="font-medium">Merhaba! Ben KıyasGO Asistan.</p>
+                            <p class="mt-1">Bir ürün aradıktan sonra bana onun hakkında sorular sorabilirsiniz.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 bg-gray-50 border-t border-b border-gray-200">
+                    <p class="text-sm font-medium text-gray-600 mb-2 ml-2">Hızlı sorular:</p>
+                    <div id="suggestion-buttons" class="flex flex-wrap gap-2">
+                        <button class="suggestion-btn">Bu ürünü almaya değer mi?</button>
+                        <button class="suggestion-btn">Hangisi bütçeme daha uygun?</button>
+                        <button class="suggestion-btn">Fiyat düşüşü için beklemeli miyim?</button>
+                        <button class="suggestion-btn">Kullanıcı yorumları nasıl?</button>
+                    </div>
+                </div>
+                <div class="p-4 flex items-center gap-3 bg-white">
+                    <input type="text" id="chat-input" placeholder="Asistana bir soru sorun..." class="flex-1 w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" disabled>
+                    <button id="chat-send-button" class="flex-shrink-0 bg-red-600 text-white rounded-full p-3 transition-all hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50" disabled>
+                        <svg class="w-6 h-6 transform rotate-90" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.875L6 12z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. FOOTER -->
+    <footer class="bg-gray-800 text-gray-400 mt-12">
+        <!-- Footer içeriği (index.html'den kopyalandı) -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-center md:text-left">
+                    <a href="index.html" class="text-2xl font-extrabold text-blue-400">
+                        Kıyas<span class="text-red-500">GO</span>
+                    </a>
+                    <p class="mt-2 text-sm">Akıllı alışverişin yeni adresi.</p>
+                </div>
+                <div class="flex gap-x-6 gap-y-2 flex-wrap justify-center">
+                    <a href="#" class="hover:text-white transition-colors">Hakkımızda</a>
+                    <a href="#" class="hover:text-white transition-colors">İletişim</a>
+                    <a href="#" class="hover:text-white transition-colors">Gizlilik Politikası</a>
+                    <a href="#" class="hover:text-white transition-colors">Kullanım Şartları</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
+                <p>&copy; 2025 KıyasGO. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Tüm JS Kodu (index.html'den kopyalandı) ---
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        
+        // GÜNCELLENDİ: Bu sayfadaki bölümler
+        const pageElektronik = document.getElementById('page-elektronik');
+        const pageResultsSection = document.getElementById('page-results-section');
+        const resultsTitle = document.getElementById('results-title');
+        const resultsGrid = document.getElementById('results-grid');
+        
+        const chatWindow = document.getElementById('chat-window');
+        const chatInput = document.getElementById('chat-input');
+        const chatSendButton = document.getElementById('chat-send-button');
+        const suggestionButtons = document.querySelectorAll('.suggestion-btn');
+
+        let currentProduct = "";
+        
+        // --- ARAMA İŞLEVİ (GÜNCELLENDİ) ---
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const query = searchInput.value.trim();
+            if (!query) return;
+
+            currentProduct = query;
+            
+            // Arayüzü güncelle: Kategori sayfasını gizle, sonuçları göster
+            if (pageElektronik) pageElektronik.classList.add('hidden'); 
+            if (pageResultsSection) pageResultsSection.classList.remove('hidden');
+            
+            resultsTitle.textContent = `"${query}" için sonuçlar`;
+            resultsGrid.innerHTML = '<p class="text-gray-500">Fiyatlar getiriliyor...</p>';
+
+            // AI Asistanını aktive et
+            chatInput.disabled = false;
+            chatSendButton.disabled = false;
+            chatInput.placeholder = `"${query}" hakkında bir soru sorun...`;
+            addAiMessage(`"${query}" için en iyi fiyatları listeledim. Bu ürün hakkında daha fazla ne bilmek istersiniz?`);
+
+            setTimeout(() => {
+                const mockResults = getMockResults(query);
+                renderResults(mockResults);
+            }, 1000);
+        }
+
+        // --- Diğer Fonksiyonlar (Aynı) ---
+        function getMockResults(query) {
+            const stores = [
+                { name: 'Trendyol', color: 'text-orange-600', link: 'https://www.trendyol.com' },
+                { name: 'Hepsiburada', color: 'text-blue-700', link: 'https://www.hepsiburada.com' },
+                { name: 'Amazon TR', color: 'text-yellow-500', link: 'https://www.amazon.com.tr' },
+                { name: 'n11', color: 'text-red-600', link: 'https://www.n11.com' },
+                { name: 'PttAVM', color: 'text-blue-500', link: 'https://www.pttavm.com' }
+            ];
+            let results = [];
+            const basePrice = 45000 + (query.length * 100); 
+            const storeCount = Math.floor(Math.random() * 3) + 3;
+            const shuffledStores = stores.sort(() => 0.5 - Math.random());
+            for (let i = 0; i < storeCount; i++) {
+                const store = shuffledStores[i];
+                const price = basePrice + Math.floor(Math.random() * 3000) - 1500;
+                results.push({
+                    storeName: store.name,
+                    storeColor: store.color,
+                    storeLink: store.link,
+                    price: price,
+                    productName: `${query} 256GB - ${store.name}`
+                });
+            }
+            results.sort((a, b) => a.price - b.price);
+            return results;
+        }
+
+        function renderResults(results) {
+            resultsGrid.innerHTML = '';
+            if (results.length === 0) {
+                resultsGrid.innerHTML = '<p class="text-gray-500">Bu arama için sonuç bulunamadı.</p>';
+                return;
+            }
+            results.forEach((item, index) => {
+                const isBestPrice = index === 0;
+                const cardHtml = `
+                    <div class="bg-white border ${isBestPrice ? 'border-blue-500 shadow-lg' : 'border-gray-200 shadow-sm'} rounded-xl overflow-hidden transition-all hover:shadow-md relative">
+                        ${isBestPrice ? '<div class="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">En İyi Fiyat</div>' : ''}
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="text-xl font-bold ${item.storeColor}">${item.storeName}</span>
+                            </div>
+                            <p class="text-gray-700 h-12 mb-4">${item.productName}</p>
+                            <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
+                                <span class="text-3xl font-extrabold text-gray-900">
+                                    ${item.price.toLocaleString('tr-TR')} TL
+                                </span>
+                                <a href="${item.storeLink}" target="_blank" class="w-full sm:w-auto flex-shrink-0 text-center bg-blue-600 text-white font-medium px-6 py-3 rounded-full transition-all hover:bg-blue-700 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                    Mağazaya Git
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                resultsGrid.innerHTML += cardHtml;
+            });
+        }
+
+        suggestionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const question = button.textContent;
+                if (!chatInput.disabled) {
+                    chatInput.value = question;
+                    sendChatMessage();
+                }
+            });
+            button.className = "bg-gray-100 text-gray-700 text-sm px-4 py-2 rounded-full transition-all hover:bg-gray-200 cursor-pointer";
+        });
+
+        chatSendButton.addEventListener('click', sendChatMessage);
+        chatInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                sendChatMessage();
+            }
+        });
+
+        function sendChatMessage() {
+            const messageText = chatInput.value.trim();
+            if (!messageText) return;
+            addUserMessage(messageText);
+            chatInput.value = '';
+            setTimeout(() => {
+                getAiResponse(messageText);
+            }, 1200);
+        }
+
+        function addUserMessage(message) {
+            const messageHtml = `
+                <div class="flex justify-end">
+                    <div class="bg-gray-200 text-gray-800 p-4 rounded-xl rounded-br-none max-w-md">
+                        <p>${message}</p>
+                    </div>
+                </div>
+            `;
+            chatWindow.innerHTML += messageHtml;
+            scrollToBottom();
+        }
+
+        function addAiMessage(message) {
+            const messageHtml = `
+                <div class="flex justify-start">
+                    <div class="bg-blue-100 text-blue-800 p-4 rounded-xl rounded-bl-none max-w-md">
+                        <p>${message}</p>
+                    </div>
+                </div>
+            `;
+            chatWindow.innerHTML += messageHtml;
+            scrollToBottom();
+        }
+
+        function getAiResponse(question) {
+            const q = question.toLowerCase();
+            let response = "Bu harika bir soru! ";
+            if (q.includes("değer mi") || q.includes("almaya değer mi")) {
+                response += `"${currentProduct}" genel olarak olumlu yorumlar alan bir ürün. Fiyat/performans açısından bakıldığında, şu anki en düşük fiyat olan ${getLowestPrice()} TL seviyesi oldukça rekabetçi görünüyor.`;
+            } else if (q.includes("bütçe") || q.includes("uygun")) {
+                response += `Bütçeniz kısıtlıysa, "${currentProduct}" modelinin bir alt versiyonunu veya benzer özelliklere sahip rakip marka ürünlerini de değerlendirebilirsiniz.`;
+            } else if (q.includes("bekle") || q.includes("düşer mi") || q.includes("indirim")) {
+                response += `Genellikle büyük kampanya dönemlerinde (örneğin Kasım indirimleri) fiyatlarda düşüş görülebilir. Acil ihtiyacınız varsa, ${getLowestPrice()} TL şu anki piyasa için iyi bir fiyat.`;
+            } else if (q.includes("yorum") || q.includes("kullanıcı")) {
+                response += `"${currentProduct}" için kullanıcı yorumları genellikle pil ömrü ve kamera performansını övüyor. Genel memnuniyet oranı %90'ın üzerinde.`;
+            } else if (q.includes("merhaba") || q.includes("selam")) {
+                response = `Merhaba! "${currentProduct}" hakkında size nasıl yardımcı olabilirim?`;
+            } else {
+                response = `"${currentProduct}" ile ilgili bu konuyu anlıyorum. Daha detaylı analiz yapabilmem için biraz daha spesifik bir soru sorabilir misiniz?`;
+            }
+            addAiMessage(response);
+        }
+
+        function getLowestPrice() {
+            const firstCardPrice = document.querySelector('#results-grid .text-3xl');
+            if (firstCardPrice) {
+                return firstCardPrice.textContent.trim().replace(' TL', '');
+            }
+            return 'mevcut';
+        }
+
+        function scrollToBottom() {
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+    </script>
+</body>
+</html>
