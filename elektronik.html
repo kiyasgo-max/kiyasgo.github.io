@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KıyasGO - Elektronik</title>
+    <title>KıyasGO - Moda</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -70,14 +70,13 @@
         </nav>
     </header>
 
-    <!-- 2. ANA İÇERİK: ELEKTRONİK SAYFASI -->
+    <!-- 2. ANA İÇERİK: MODA SAYFASI -->
     <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-[calc(100vh-450px)]">
         
-        <!-- ELEKTRONİK KATEGORİ SAYFASI -->
-        <section id="page-elektronik" class="page-section p-6 bg-white rounded-lg shadow-md">
-            <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b pb-3">Elektronik</h2>
-            <p class="text-lg text-gray-600">Popüler elektronik ürünler ve alt kategorileri burada listelenecek. (Örn: Telefonlar, Bilgisayarlar, TV'ler...)</p>
-            <!-- Bu alana o kategoriye ait içerikler eklenebilir -->
+        <!-- MODA KATEGORİ SAYFASI -->
+        <section id="page-moda" class="page-section p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b pb-3">Moda</h2>
+            <p class="text-lg text-gray-600">En trend giyim, ayakkabı ve aksesuar ürünleri burada listelenecek.</p>
         </section>
 
         <!-- Arama Sonuçları Bölümü (Arama yapıldığında burası gösterilecek) -->
@@ -202,7 +201,7 @@
         const searchButtonMobile = document.getElementById('search-button-mobile');
         
         // GÜNCELLENDİ: Bu sayfadaki bölümler
-        const pageElektronik = document.getElementById('page-elektronik');
+        const pageModa = document.getElementById('page-moda');
         const pageResultsSection = document.getElementById('page-results-section');
         const resultsTitle = document.getElementById('results-title');
         const resultsGrid = document.getElementById('results-grid');
@@ -246,7 +245,7 @@
             currentProduct = query;
             
             // Arayüzü güncelle: Kategori sayfasını gizle, sonuçları göster
-            if (pageElektronik) pageElektronik.classList.add('hidden'); 
+            if (pageModa) pageModa.classList.add('hidden'); 
             if (pageResultsSection) pageResultsSection.classList.remove('hidden');
             
             resultsTitle.textContent = `"${query}" için sonuçlar`;
@@ -263,8 +262,6 @@
                 renderResults(mockResults);
             }, 1000);
         }
-
-
 
         // --- YENİ: Yan Menü Fonksiyonları ---
         function openMenu() {
