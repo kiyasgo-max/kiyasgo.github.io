@@ -65,14 +65,7 @@
             </div>
 
 
-            <!-- KATEGORİ MENÜSÜ LİNKLERİ -->
-            <nav id="category-nav" class="w-full flex justify-center gap-4 md:gap-8 mt-4 border-t border-gray-200 pt-3">
-                <a href="index.html" class="nav-link text-gray-600 font-medium py-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 transition-all">Ana Sayfa</a>
-                <a href="elektronik.html" class="nav-link text-gray-600 font-medium py-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 transition-all">Elektronik</a>
-                <a href="moda.html" class="nav-link text-gray-600 font-medium py-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 transition-all active">Moda</a>
-                <a href="ev-yasam.html" class="nav-link text-gray-600 font-medium py-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 transition-all">Ev & Yaşam</a>
-            </nav>
-            <!-- KATEGORİ MENÜSÜ BİTİŞİ -->
+            <!-- KATEGORİ MENÜSÜ LİNKLERİ (BU BÖLÜM SİLİNDİ) -->
 
         </nav>
     </header>
@@ -179,10 +172,21 @@
                 </svg>
             </button>
         </div>
-        <!-- Menü İçeriği -->
+        <!-- GÜNCELLENDİ: Menü İçeriği (Kategoriler Eklendi) -->
         <nav class="p-4">
             <a href="#" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium">Giriş Yap / Kayıt Ol</a>
             <a href="#" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium">Profilim</a>
+            
+            <hr class="my-3">
+
+            <h4 class="px-4 pt-2 pb-1 text-sm font-semibold text-gray-500 uppercase tracking-wider">Kategoriler</h4>
+            <a href="index.html" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium">Ana Sayfa</a>
+            <a href="elektronik.html" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium">Elektronik</a>
+            <a href="moda.html" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium">Moda</a>
+            <a href="ev-yasam.html" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium">Ev & Yaşam</a>
+            
+            <hr class="my-3">
+
             <a href="#" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium">Ayarlar</a>
             <a href="#" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium">Yardım Merkezi</a>
         </nav>
@@ -251,7 +255,8 @@
             chatInput.disabled = false;
             chatSendButton.disabled = false;
             chatInput.placeholder = `"${query}" hakkında bir soru sorun...`;
-            addAiMessage(`"${query}" için en iyi fiyatları listeledim. Bu ürün hakkında daha fazla ne bilmek istersiniz?`);
+            // GÜNCELLENDİ: Mock AI mesajı yerine Gemini'ye hazır olduğunu belirten bir mesaj
+            addAiMessage(`"${query}" için en iyi fiyatları listeledim. Bu ürünle ilgili sorularınızı yanıtlamaya hazırım.`);
 
             setTimeout(() => {
                 const mockResults = getMockResults(query);
@@ -357,6 +362,7 @@
             button.className = "bg-gray-100 text-gray-700 text-sm px-4 py-2 rounded-full transition-all hover:bg-gray-200 cursor-pointer";
         });
 
+        // GÜNCELLENDİ: Gemini entegrasyonu için async
         chatSendButton.addEventListener('click', sendChatMessage);
         chatInput.addEventListener('keyup', (e) => {
             if (e.key === 'Enter') {
@@ -364,14 +370,17 @@
             }
         });
 
-        function sendChatMessage() {
+        // GÜNCELLENDİ: sendChatMessage artık async
+        async function sendChatMessage() {
             const messageText = chatInput.value.trim();
             if (!messageText) return;
             addUserMessage(messageText);
             chatInput.value = '';
-            setTimeout(() => {
-                getAiResponse(messageText);
-            }, 1200);
+
+            // Loading göstergesi ekle
+            addAiMessage("Yapay zeka düşünüyor...", true);
+            // GÜNCELLENDİ: Mock yanıt yerine Gemini'yi çağır
+            await getAiResponse(messageText);
         }
 
         function addUserMessage(message) {
@@ -398,33 +407,116 @@
             scrollToBottom();
         }
 
-        function getAiResponse(question) {
-            const q = question.toLowerCase();
-            let response = "Bu harika bir soru! ";
-            if (q.includes("değer mi") || q.includes("almaya değer mi")) {
-                response += `"${currentProduct}" genel olarak olumlu yorumlar alan bir ürün. Fiyat/performans açısından bakıldığında, şu anki en düşük fiyat olan ${getLowestPrice()} TL seviyesi oldukça rekabetçi görünüyor.`;
-            } else if (q.includes("bütçe") || q.includes("uygun")) {
-                response += `Bütçeniz kısıtlıysa, "${currentProduct}" modelinin bir alt versiyonunu veya benzer özelliklere sahip rakip marka ürünlerini de değerlendirebilirsiniz.`;
-            } else if (q.includes("bekle") || q.includes("düşer mi") || q.includes("indirim")) {
-                response += `Genellikle büyük kampanya dönemlerinde (örneğin Kasım indirimleri) fiyatlarda düşüş görülebilir. Acil ihtiyacınız varsa, ${getLowestPrice()} TL şu anki piyasa için iyi bir fiyat.`;
-            } else if (q.includes("yorum") || q.includes("kullanıcı")) {
-                response += `"${currentProduct}" için kullanıcı yorumları genellikle pil ömrü ve kamera performansını övüyor. Genel memnuniyet oranı %90'ın üzerinde.`;
-            } else if (q.includes("merhaba") || q.includes("selam")) {
-                response = `Merhaba! "${currentProduct}" hakkında size nasıl yardımcı olabilirim?`;
-            } else {
-                response = `"${currentProduct}" ile ilgili bu konuyu anlıyorum. Daha detaylı analiz yapabilmem için biraz daha spesifik bir soru sorabilir misiniz?`;
+        // GÜNCELLENDİ: addAiMessage 'isTyping' parametresi aldı
+        function addAiMessage(message, isTyping = false) {
+            // Önceki "düşünüyor" mesajını kaldır
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
             }
-            addAiMessage(response);
+
+            const messageHtml = `
+                <div class="flex justify-start" ${isTyping ? 'id="typing-indicator"' : ''}>
+                    <div class="bg-blue-100 text-blue-800 p-4 rounded-xl rounded-bl-none max-w-md">
+                        <p>${isTyping ? '<i>' + message + '</i>' : message}</p>
+                    </div>
+                </div>
+            `;
+            chatWindow.innerHTML += messageHtml;
+            scrollToBottom();
         }
 
-        function getLowestPrice() {
-            const firstCardPrice = document.querySelector('#results-grid .text-3xl');
-            if (firstCardPrice) {
-                return firstCardPrice.textContent.trim().replace(' TL', '');
+        // YENİ: Gemini API Çağrı Fonksiyonu
+        /**
+         * Gemini API'ye güvenli ve yeniden deneyerek istek atar.
+         * @param {string} userPrompt Kullanıcının tam sorgusu.
+         * @returns {Promise<string>} API'den gelen metin yanıtı.
+         */
+        async function callGeminiApi(userPrompt) {
+            const apiKey = ""; // Canvas ortamı tarafından sağlanır
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            // SİSTEM PROMPTU: Yapay zekanın rolünü ve kısıtlamalarını belirler
+            const systemPrompt = `
+                Sen 'KıyasGO AI Asistanı' adında bir e-ticaret ve ürün karşılaştırma uzmanısın.
+                Görevin:
+                1.  Sadece ve sadece ürünler, ürün özellikleri (kamera, pil, işlemci vb.), fiyatlar, e-ticaret, alışveriş tavsiyeleri ve fiyat karşılaştırmaları hakkındaki soruları yanıtla.
+                2.  Kullanıcı bir ürün arattı (örn: "${currentProduct || 'bir ürün'}"). Sorularını bu ürün bağlamında değerlendir.
+                3.  Yanıtların kısa, net ve bilgilendirici olsun.
+                4.  Konu dışı (günlük yaşam, tarih, politika, sohbet vb.) soruları KESİNLİKLE yanıtlama. 
+                5.  Konu dışı bir soru gelirse, "Üzgünüm, ben sadece ürünler ve alışverişle ilgili sorularınıza yardımcı olabilirim." gibi nazik bir yanıtla konuyu reddet.
+            `;
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: userPrompt }]
+                }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                },
+                // Google Search grounding'i etkinleştir (daha güncel yanıtlar için)
+                tools: [{ "google_search": {} }],
+            };
+
+            let retries = 3;
+            let delay = 1000; // 1 saniye
+
+            while (retries > 0) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        // 429 (Too Many Requests) gibi durumlar için yeniden deneme
+                        if (response.status === 429 || response.status >= 500) {
+                            throw new Error(`Sunucu hatası veya hız sınırı: ${response.status}`);
+                        }
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        return candidate.content.parts[0].text;
+                    } else {
+                        // API'den geçerli bir yanıt gelmezse (örn: güvenlik filtreleri)
+                        return "Sorunuzu şu anda yanıtlayamıyorum. Lütfen farklı bir şekilde sormayı deneyin.";
+                    }
+
+                } catch (error) {
+                    // console.error("Gemini API Hatası:", error.message); // Hata ayıklama için
+                    retries--;
+                    if (retries === 0) {
+                        return "Üzgünüm, şu anda AI asistanına bağlanırken bir sorun yaşıyorum. Lütfen daha sonra tekrar deneyin.";
+                    }
+                    // Exponential backoff
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2; 
+                }
             }
-            return 'mevcut';
+            return "Asistana bağlanırken bir sorun oluştu."; // Ekstra güvenlik
         }
 
+
+        // GÜNCELLENDİ: getAiResponse artık Gemini'yi çağırıyor
+        async function getAiResponse(question) {
+            // Kullanıcının sorusunu ve mevcut ürün bağlamını birleştir
+            const fullPrompt = `Kullanıcı "${currentProduct || 'herhangi bir ürün'}" hakkında bilgi arıyor ve şunu sordu: "${question}"`;
+            
+            try {
+                const response = await callGeminiApi(fullPrompt);
+                addAiMessage(response); // "düşünüyor" mesajını API yanıtıyla değiştirir
+            } catch (error) {
+                addAiMessage("Bir hata oluştu. Lütfen tekrar deneyin.");
+            }
+        }
+
+        // KALDIRILDI: getLowestPrice fonksiyonu artık kullanılmıyor.
+        
         function scrollToBottom() {
             chatWindow.scrollTop = chatWindow.scrollHeight;
         }
