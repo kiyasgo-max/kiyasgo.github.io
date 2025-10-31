@@ -20,6 +20,10 @@
             color: #2563eb;
             border-bottom-color: #2563eb;
         }
+        /* YENİ: Menü geçiş stili */
+        #side-menu-overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -27,11 +31,13 @@
     <!-- 1. HEADER: ARAMA ÇUBUĞU VE MENÜ -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <a href="index.html" class="text-3xl font-extrabold text-blue-600">
+            <!-- GÜNCELLENDİ: Üst satır (Logo, Arama, Menü Butonu) -->
+            <div class="flex justify-between items-center gap-4">
+                <a href="index.html" class="text-3xl font-extrabold text-blue-600 flex-shrink-0">
                     Kıyas<span class="text-red-600">GO</span>
                 </a>
-                <div class="relative w-full max-w-2xl">
+                
+                <div class="relative w-full max-w-2xl hidden md:block">
                     <input type="search" id="search-input" placeholder="Aradığınız ürünü yazın (örn: 'iPhone 15 Pro')" class="w-full pl-5 pr-12 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
                     <button id="search-button" class="absolute right-0 top-0 h-full px-5 text-gray-500 hover:text-blue-600 rounded-full flex items-center justify-center">
                         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
@@ -39,7 +45,25 @@
                         </svg>
                     </button>
                 </div>
+
+                <!-- YENİ: Hamburger Menü Butonu -->
+                <button id="menu-open-btn" class="text-gray-600 hover:text-blue-600 p-2 rounded-full">
+                    <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
             </div>
+
+            <!-- GÜNCELLENDİ: Mobil için Arama Çubuğu (Üst satırın altında) -->
+            <div class="relative w-full mt-4 md:hidden">
+                <input type="search" id="search-input-mobile" placeholder="Aradığınız ürünü yazın..." class="w-full pl-5 pr-12 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                <button id="search-button-mobile" class="absolute right-0 top-0 h-full px-5 text-gray-500 hover:text-blue-600 rounded-full flex items-center justify-center">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                </button>
+            </div>
+
 
             <!-- KATEGORİ MENÜSÜ LİNKLERİ -->
             <nav id="category-nav" class="w-full flex justify-center gap-4 md:gap-8 mt-4 border-t border-gray-200 pt-3">
@@ -143,10 +167,34 @@
         </div>
     </footer>
 
+    <!-- YENİ: Sağdan Açılan Menü -->
+    <div id="side-menu-overlay" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0"></div>
+    <div id="side-menu" class="fixed top-0 right-0 h-full w-72 bg-white z-[60] shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out">
+        <!-- Menü Başlığı -->
+        <div class="flex justify-between items-center p-4 border-b">
+            <h3 class="text-xl font-bold text-gray-800">Menü</h3>
+            <button id="menu-close-btn" class="text-gray-500 hover:text-gray-800">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <!-- Menü İçeriği -->
+        <nav class="p-4">
+            <a href="#" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium">Giriş Yap / Kayıt Ol</a>
+            <a href="#" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium">Profilim</a>
+            <a href="#" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium">Ayarlar</a>
+            <a href="#" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium">Yardım Merkezi</a>
+        </nav>
+    </div>
+
     <script>
         // --- Tüm JS Kodu (index.html'den kopyalandı) ---
+        // GÜNCELLENDİ: Mobil arama için seçiciler eklendi
         const searchInput = document.getElementById('search-input');
         const searchButton = document.getElementById('search-button');
+        const searchInputMobile = document.getElementById('search-input-mobile');
+        const searchButtonMobile = document.getElementById('search-button-mobile');
         
         // GÜNCELLENDİ: Bu sayfadaki bölümler
         const pageModa = document.getElementById('page-moda');
@@ -159,20 +207,37 @@
         const chatSendButton = document.getElementById('chat-send-button');
         const suggestionButtons = document.querySelectorAll('.suggestion-btn');
 
+        // YENİ: Yan Menü Seçicileri
+        const menuOpenBtn = document.getElementById('menu-open-btn');
+        const menuCloseBtn = document.getElementById('menu-close-btn');
+        const sideMenu = document.getElementById('side-menu');
+        const sideMenuOverlay = document.getElementById('side-menu-overlay');
+
         let currentProduct = "";
         
         // --- ARAMA İŞLEVİ (GÜNCELLENDİ) ---
         searchButton.addEventListener('click', performSearch);
         searchInput.addEventListener('keyup', (e) => {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
+            if (e.key === 'Enter') performSearch();
+        });
+        searchButtonMobile.addEventListener('click', performSearchMobile);
+        searchInputMobile.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') performSearchMobile();
         });
 
         function performSearch() {
             const query = searchInput.value.trim();
             if (!query) return;
+            triggerSearch(query);
+        }
 
+        function performSearchMobile() {
+            const query = searchInputMobile.value.trim();
+            if (!query) return;
+            triggerSearch(query);
+        }
+
+        function triggerSearch(query) {
             currentProduct = query;
             
             // Arayüzü güncelle: Kategori sayfasını gizle, sonuçları göster
@@ -192,6 +257,34 @@
                 const mockResults = getMockResults(query);
                 renderResults(mockResults);
             }, 1000);
+        }
+
+        // --- YENİ: Yan Menü Fonksiyonları ---
+        function openMenu() {
+            sideMenuOverlay.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                sideMenuOverlay.classList.add('opacity-100');
+                sideMenu.classList.remove('translate-x-full');
+            });
+        }
+
+        function closeMenu() {
+            sideMenuOverlay.classList.remove('opacity-100');
+            sideMenu.classList.add('translate-x-full');
+            // Geçiş bittikten sonra overlay'i gizle
+            setTimeout(() => {
+                sideMenuOverlay.classList.add('hidden');
+            }, 300); // transition-duration-300
+        }
+
+        if (menuOpenBtn) {
+            menuOpenBtn.addEventListener('click', openMenu);
+        }
+        if (menuCloseBtn) {
+            menuCloseBtn.addEventListener('click', closeMenu);
+        }
+        if (sideMenuOverlay) {
+            sideMenuOverlay.addEventListener('click', closeMenu);
         }
 
         // --- Diğer Fonksiyonlar (Aynı) ---
@@ -338,3 +431,4 @@
     </script>
 </body>
 </html>
+
