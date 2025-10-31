@@ -17,7 +17,7 @@
         #chat-window::-webkit-scrollbar { width: 6px; }
         #chat-window::-webkit-scrollbar-thumb { background-color: #d1d5db; border-radius: 20px; }
         
-        /* <!-- YENİ --> Aktif menü linki için stil */
+        /* Aktif menü linki için stil */
         .nav-link.active {
             color: #2563eb; /* text-blue-600 */
             border-bottom-color: #2563eb; /* border-blue-600 */
@@ -30,7 +30,7 @@
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <a href="#" class="text-3xl font-extrabold text-blue-600">
+                <a href="index.html" class="text-3xl font-extrabold text-blue-600">
                     Kıyas<span class="text-red-600">GO</span>
                 </a>
                 <div class="relative w-full max-w-2xl">
@@ -43,22 +43,22 @@
                 </div>
             </div>
 
-            <!-- YENİ: KATEGORİ MENÜSÜ -->
+            <!-- GÜNCELLENDİ: KATEGORİ MENÜSÜ LİNKLERİ -->
             <nav id="category-nav" class="w-full flex justify-center gap-4 md:gap-8 mt-4 border-t border-gray-200 pt-3">
-                <a href="#" class="nav-link text-gray-600 font-medium py-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 transition-all" data-page="page-start-message">Ana Sayfa</a>
-                <a href="#" class="nav-link text-gray-600 font-medium py-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 transition-all" data-page="page-elektronik">Elektronik</a>
-                <a href="#" class="nav-link text-gray-600 font-medium py-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 transition-all" data-page="page-moda">Moda</a>
-                <a href="#" class="nav-link text-gray-600 font-medium py-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 transition-all" data-page="page-ev-yasam">Ev & Yaşam</a>
+                <a href="index.html" class="nav-link text-gray-600 font-medium py-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 transition-all active">Ana Sayfa</a>
+                <a href="elektronik.html" class="nav-link text-gray-600 font-medium py-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 transition-all">Elektronik</a>
+                <a href="moda.html" class="nav-link text-gray-600 font-medium py-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 transition-all">Moda</a>
+                <a href="ev-yasam.html" class="nav-link text-gray-600 font-medium py-1 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 transition-all">Ev & Yaşam</a>
             </nav>
-            <!-- YENİ: KATEGORİ MENÜSÜ BİTİŞİ -->
+            <!-- KATEGORİ MENÜSÜ BİTİŞİ -->
 
         </nav>
     </header>
 
-    <!-- 2. ANA İÇERİK: TÜM SAYFALAR -->
+    <!-- 2. ANA İÇERİK: ANA SAYFA -->
     <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-[calc(100vh-450px)]">
         
-        <!-- Başlangıç Mesajı (GÜNCELLENDİ: ID ve class eklendi) -->
+        <!-- Başlangıç Mesajı -->
         <div id="page-start-message" class="page-section text-center text-gray-500 py-16">
             <svg class="w-16 h-16 mx-auto text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
@@ -67,7 +67,7 @@
             <p class="text-lg mt-2">Karşılaştırmak istediğiniz ürünü yukarıdaki çubuğa yazın.</p>
         </div>
 
-        <!-- Arama Sonuçları Bölümü (GÜNCELLENDİ: ID ve class eklendi) -->
+        <!-- Arama Sonuçları Bölümü -->
         <section id="page-results-section" class="page-section hidden">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-3">
                 <h1 id="results-title" class="text-2xl md:text-3xl font-bold text-gray-800"></h1>
@@ -80,28 +80,11 @@
             </div>
         </section>
 
-        <!-- YENİ: ELEKTRONİK KATEGORİ SAYFASI -->
-        <section id="page-elektronik" class="page-section hidden p-6 bg-white rounded-lg shadow-md">
-            <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b pb-3">Elektronik</h2>
-            <p class="text-lg text-gray-600">Popüler elektronik ürünler ve alt kategorileri burada listelenecek. (Örn: Telefonlar, Bilgisayarlar, TV'ler...)</p>
-            <!-- Bu alana o kategoriye ait içerikler eklenebilir -->
-        </section>
-
-        <!-- YENİ: MODA KATEGORİ SAYFASI -->
-        <section id="page-moda" class="page-section hidden p-6 bg-white rounded-lg shadow-md">
-            <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b pb-3">Moda</h2>
-            <p class="text-lg text-gray-600">En trend giyim, ayakkabı ve aksesuar ürünleri burada listelenecek.</p>
-        </section>
-        
-        <!-- YENİ: EV & YAŞAM KATEGORİ SAYFASI -->
-        <section id="page-ev-yasam" class="page-section hidden p-6 bg-white rounded-lg shadow-md">
-            <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b pb-3">Ev & Yaşam</h2>
-            <p class="text-lg text-gray-600">Mobilya, dekorasyon ve süpermarket ürünleri burada listelenecek.</p>
-        </section>
+        <!-- Kategori bölümleri bu sayfadan kaldırıldı -->
 
     </main>
 
-    <!-- 3. AI ALIŞVERİŞ ASİSTANI (DÜZELTME: Eksik HTML eklendi) -->
+    <!-- 3. AI ALIŞVERİŞ ASİSTANI -->
     <section id="ai-assistant-section" class="py-12 md:py-16 mt-12 rounded-t-xl shadow-inner-top">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-8">
@@ -140,7 +123,6 @@
                 <!-- Chat Girdisi -->
                 <div class="p-4 flex items-center gap-3 bg-white">
                     <input type="text" id="chat-input" placeholder="Asistana bir soru sorun..." class="flex-1 w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" disabled>
-                    <!-- DÜZELTME: 'classs' yazım hatası 'class' olarak düzeltildi -->
                     <button id="chat-send-button" class="flex-shrink-0 bg-red-600 text-white rounded-full p-3 transition-all hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50" disabled>
                         <svg class="w-6 h-6 transform rotate-90" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.875L6 12z" />
@@ -151,12 +133,12 @@
         </div>
     </section>
 
-    <!-- 4. FOOTER (DÜZELTME: Eksik HTML eklendi) -->
+    <!-- 4. FOOTER -->
     <footer class="bg-gray-800 text-gray-400 mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="text-center md:text-left">
-                    <a href="#" class="text-2xl font-extrabold text-blue-400">
+                    <a href="index.html" class="text-2xl font-extrabold text-blue-400">
                         Kıyas<span class="text-red-500">GO</span>
                     </a>
                     <p class="mt-2 text-sm">Akıllı alışverişin yeni adresi.</p>
@@ -175,18 +157,17 @@
     </footer>
 
     <script>
-        // --- DOM ELEMENTLERİ (GÜNCELLENDİ) ---
+        // --- DOM ELEMENTLERİ ---
         const searchInput = document.getElementById('search-input');
         const searchButton = document.getElementById('search-button');
         
         // Sayfa bölümleri
-        const pageSections = document.querySelectorAll('.page-section');
+        const pageStartMessage = document.getElementById('page-start-message'); // GÜNCELLENDİ
+        const pageResultsSection = document.getElementById('page-results-section'); // GÜNCELLENDİ
         const resultsTitle = document.getElementById('results-title');
         const resultsGrid = document.getElementById('results-grid');
         
-        // Kategori navigasyonu
-        const categoryNav = document.getElementById('category-nav');
-        const navLinks = document.querySelectorAll('.nav-link');
+        // Kategori navigasyon JS'i kaldırıldı
 
         // AI Chat
         const chatWindow = document.getElementById('chat-window');
@@ -195,46 +176,8 @@
         const suggestionButtons = document.querySelectorAll('.suggestion-btn');
 
         let currentProduct = "";
-
-        // --- YENİ: SAYFA YÖNETİMİ ---
         
-        // Belirli bir sayfayı gösteren fonksiyon
-        function showPage(pageId) {
-            // Önce tüm sayfaları gizle
-            pageSections.forEach(section => {
-                section.classList.add('hidden');
-            });
-
-            // İlgili linki aktif yap
-            navLinks.forEach(link => {
-                link.classList.remove('active'); // Önce hepsinden 'active'i kaldır
-                if (link.dataset.page === pageId) {
-                    link.classList.add('active'); // Sadece tıklanana ekle
-                }
-            });
-            
-            // Sadece istenen sayfayı göster
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.remove('hidden');
-            }
-        }
-
-        // Navigasyon linklerine tıklama olayı ekle
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault(); // Sayfanın üste atlamasını engelle
-                const pageId = link.dataset.page;
-                showPage(pageId);
-            });
-        });
-
-        // Sayfa ilk yüklendiğinde ana sayfayı göster
-        document.addEventListener('DOMContentLoaded', () => {
-            showPage('page-start-message');
-        });
-        
-        // --- ARAMA İŞLEVİ (GÜNCELLENDİ) ---
+        // --- ARAMA İŞLEVİ (Sadece Ana Sayfa için) ---
 
         searchButton.addEventListener('click', performSearch);
         searchInput.addEventListener('keyup', (e) => {
@@ -249,8 +192,10 @@
 
             currentProduct = query;
             
-            // Arayüzü güncelle (GÜNCELLENDİ: Artık showPage fonksiyonunu kullanıyor)
-            showPage('page-results-section'); // Arama sonuçları sayfasını göster
+            // Arayüzü güncelle
+            if (pageStartMessage) pageStartMessage.classList.add('hidden'); // Başlangıç mesajını gizle
+            if (pageResultsSection) pageResultsSection.classList.remove('hidden'); // Sonuçları göster
+            
             resultsTitle.textContent = `"${query}" için sonuçlar`;
             resultsGrid.innerHTML = '<p class="text-gray-500">Fiyatlar getiriliyor...</p>';
 
@@ -266,11 +211,7 @@
             }, 1000);
         }
 
-        // --- DEĞİŞİKLİK GEREKMEYEN DİĞER FONKSİYONLAR ---
-        // (getMockResults, renderResults, sendChatMessage, addUserMessage, addAiMessage, getAiResponse, getLowestPrice, scrollToBottom fonksiyonları olduğu gibi kalabilir)
-        
-        // --- (Kopyalanmamış fonksiyonları buraya ekleyin) ---
-        // getMockResults, renderResults, ve tüm AI chat fonksiyonları...
+        // --- Diğer Fonksiyonlar (Aynı) ---
 
         function getMockResults(query) {
             const stores = [
@@ -330,12 +271,6 @@
             });
         }
 
-        // DÜZELTME: Bu fonksiyonların DOMContentLoaded içinde olmaması gerekir,
-        // ancak `suggestionButtons` ve `chatSendButton` null olacağı için
-        // `DOMContentLoaded` sonrasına taşınan script'te sorun yok.
-        // Hata `chatSendButton` null olduğu için `addEventListener` eklenememesinden kaynaklanıyor.
-        // HTML'i düzelttiğimiz için bu seçiciler (selector) artık çalışacaktır.
-
         suggestionButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const question = button.textContent;
@@ -344,14 +279,6 @@
                     sendChatMessage();
                 }
             });
-            // DÜZELTME: `className` ataması, zaten var olan stilleri (Tailwind) bozmaması için
-            // `classList.add` vb. ile yapılmalı, ancak orijinal kodda bu şekildeydi ve
-            // sadece stil amaçlı. Hata kaynağı bu değil, ancak butonların stili
-            // `suggestion-btn` class'ı ile gelmeli. Orijinal kodda bu class yoktu, 
-            // `className` atamasıyla ekleniyordu.
-            // Orijinal kodda bu class ataması `suggestion-btn`'leri stillendiriyordu.
-            // Bu butonlar HTML'de `suggestion-btn` class'ı ile başlıyor.
-            // Bu atama (line 900) bu class'ı GÜNCELLİYOR.
             button.className = "bg-gray-100 text-gray-700 text-sm px-4 py-2 rounded-full transition-all hover:bg-gray-200 cursor-pointer";
         });
 
